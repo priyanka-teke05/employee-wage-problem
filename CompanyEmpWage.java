@@ -1,11 +1,19 @@
+import java.util.*;
 class CompanyEmpWage {
 	public static final int IS_FULL_TIME=1;
 	public static final int IS_PART_TIME=2;
 	
+	//variables
 	public String company; 
-	public final int empRatePerHr;
-	public final int numOfWorkingDays;
-	public final int maxHoursPerMonth;
+	public int empRatePerHr;
+	public int numOfWorkingDays;
+	public int maxHoursPerMonth;
+	public int totalWage=0;
+	public int empWage=0;
+	public int totalDays=0;
+	
+	//hashmap to store daily wages
+	HashMap<Integer, Integer>dailyWage=new HashMap<Integer, Integer>();
 	
 	public CompanyEmpWage(String company, int numOfWorkingDays, int empRatePerHr, int maxHoursPerMonth) {
 		this.company=company;
@@ -15,17 +23,14 @@ class CompanyEmpWage {
 	}
 	
 	public void companyWage() {
-		//variables
-		int totalWage=0;
+		//variables	
 		int totalHrs=0;
-		int totalDays=0;
 		
 		System.out.println("Employee details of "+company);
 		
 		while(totalHrs<=maxHoursPerMonth && totalDays<numOfWorkingDays) {
 			//local variable
 			int empHrs=0;
-			int empWage=0;
 			int empCheck = (int)Math.floor(Math.random()*10)%3;			
 			totalDays++;
 			
@@ -46,10 +51,14 @@ class CompanyEmpWage {
 			totalHrs=totalHrs+empHrs;
 			empWage=empHrs*empRatePerHr;
 			totalWage=totalWage+empWage;
-			System.out.println("day : "+totalDays+" Employee Wage : "+empWage);
+			
+			//add daily wage
+			dailyWage.put(totalDays, empWage);
 		}
-		//display total hours and wages
-		System.out.println("Total Hours : "+totalHrs);	
-		System.out.println("Total wage : "+totalWage);	
+		//add total wage
+		dailyWage.put(totalDays+1, totalWage);
+		
+		//display daily wages and total wages
+		System.out.println(dailyWage);
 	}
 }

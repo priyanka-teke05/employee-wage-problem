@@ -1,7 +1,6 @@
 import java.util.*;
 public class EmployeeWages {
-	static int i=0;
-	EmpWageBuilder[] empDetails=new EmpWageBuilder[4];
+	
 	public static void main(String args[]) {
 		
 		//display welcome message
