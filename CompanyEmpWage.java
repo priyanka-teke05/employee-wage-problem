@@ -12,8 +12,11 @@ class CompanyEmpWage {
 	public int empWage=0;
 	public int totalDays=0;
 	
-	//hashmap to store daily wages
+	//hash map to store day and daily wages
 	HashMap<Integer, Integer>dailyWage=new HashMap<Integer, Integer>();
+	
+	//hash map to store company and total wage
+	HashMap<String, Integer>totalWages=new HashMap<String, Integer>();
 	
 	public CompanyEmpWage(String company, int numOfWorkingDays, int empRatePerHr, int maxHoursPerMonth) {
 		this.company=company;
@@ -52,13 +55,22 @@ class CompanyEmpWage {
 			empWage=empHrs*empRatePerHr;
 			totalWage=totalWage+empWage;
 			
-			//add daily wage
+			//add day and daily wage
 			dailyWage.put(totalDays, empWage);
 		}
-		//add total wage
-		dailyWage.put(totalDays+1, totalWage);
-		
-		//display daily wages and total wages
-		System.out.println(dailyWage);
+		//add company and total wage
+		totalWages.put(company, totalWage);
+	}
+	
+	//function to display day and daily wages
+	public void printDailyWage() {
+		for(int i:dailyWage.keySet()) {
+			System.out.println("Day "+i+" : "+dailyWage.get(i));
+		}
+	} 
+	
+	//function to display total wages by company
+	public void companyTotalWage() {
+		System.out.println("Total wage of company : "+totalWages);
 	}
 }

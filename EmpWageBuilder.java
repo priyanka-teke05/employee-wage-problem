@@ -8,5 +8,7 @@ class EmpWageBuilder {
 		companies.add(new CompanyEmpWage(company,numOfWorkingDays,empRatePerHr,maxHoursPerMonth));
 		CompanyEmpWage e=companies.get(companies.size()-1);
 		e.companyWage();
+		e.printDailyWage();
+		e.companyTotalWage();
 	}
 }
