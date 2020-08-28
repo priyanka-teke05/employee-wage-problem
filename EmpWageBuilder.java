@@ -1,13 +1,12 @@
-public class EmpWageBuilder {
+import java.util.*;
+class EmpWageBuilder {
 	
-	static int i=0;
-	
-	//array of objects for multiple companies
-	CompanyEmpWage[] companies = new CompanyEmpWage[4];
+	ArrayList<CompanyEmpWage> companies = new ArrayList<CompanyEmpWage>();
 	
 	public void empWageDetails(String company, int numOfWorkingDays, int empRatePerHr, int maxHoursPerMonth) {
-		companies[i]=new CompanyEmpWage(company, numOfWorkingDays,empRatePerHr,maxHoursPerMonth);
-		companies[i].companyWage();
-		i++;
+		companies.add(new CompanyEmpWage(company,numOfWorkingDays,empRatePerHr,maxHoursPerMonth));
+		
+		CompanyEmpWage e=companies.get(companies.size()-1);
+		e.companyWage();
 	}
 }
